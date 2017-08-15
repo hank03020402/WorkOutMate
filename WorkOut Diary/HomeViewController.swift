@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+          self.navigationController?.isNavigationBarHidden = true
         if revealViewController() != nil{
       self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
         if let identifier = segue.identifier{
             if identifier == "toTrackmyWorkout"{
                 PreviousViewController.selectedRow = nil
-               let workout = WorkOut.newWorkOut()
+               _ = WorkOut.newWorkOut()
                 WorkOut.saveWorkOut()
         }
     }

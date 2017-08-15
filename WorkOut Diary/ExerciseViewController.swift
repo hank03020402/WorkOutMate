@@ -13,16 +13,13 @@ class ExerciseViewController: UIViewController,UITableViewDataSource, UITableVie
     var exercise: Exercise?
     var sets = [Set]()
   
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        
-        
-    }
+    var timer = Timer()
+   var counter = 0
     @IBOutlet weak var exerciseTableView: UITableView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+
+          self.navigationController?.isNavigationBarHidden = true
         exerciseTableView.reloadData()
         exercise = self.exercise ?? Exercise.newExercise()
         exerciseNameTextField.text = exercise?.name ?? ""
@@ -30,7 +27,8 @@ class ExerciseViewController: UIViewController,UITableViewDataSource, UITableVie
         exerciseTableView.delegate = self
         
         if let currentRow = TableViewController.selectedRow {
-            sets = Set.retrieveSets().filter({$0.exercise?.id == currentRow})
+            let he = Set.retrieveSets().filter({($0.exercise?.workout?.id)! == PreviousViewController.selectedRow!})
+            sets = he.filter({$0.exercise?.id == currentRow})
         }
         
     }
@@ -53,17 +51,7 @@ class ExerciseViewController: UIViewController,UITableViewDataSource, UITableVie
         Set.saveSet()
         sets.append(set)
         exerciseTableView.reloadData()
-      /*  let alertController = UIAlertController(title: "Set Finished", message: "You have finished one set, take a rest!", preferredStyle: .alert)
-        var sec = 3
-        let defaultAction = UIAlertAction(title: "Dismiss in \(sec)" , style: .default, handler: nil)
-        alertController.addAction(defaultAction)
         
-        DispatchQueue.main.async() {
-            //self.presentViewController(alertController, animated: true, completion: nil)
-            self.show(alertController, sender: self)
-        }
-        
-                    */
     }
     
     @IBAction func finishTapped(_ sender: UIButton) {
@@ -71,13 +59,24 @@ class ExerciseViewController: UIViewController,UITableViewDataSource, UITableVie
         
         exercise?.time = Date() as NSDate
         let workouts = WorkOut.retrieveWorkOuts()
-        exercise?.workout = workouts[Int(PreviousViewController.count)]
+        exercise?.workout = workouts[WorkOut.retrieveWorkOuts().count-1]
+        exercise?.workout?.id =  Int16(WorkOut.retrieveWorkOuts().count-1)
+        for set in sets {
+            set.exercise?.workout?.id =  Int16(WorkOut.retrieveWorkOuts().count-1)
+        }
         if let id = TableViewController.selectedRow{
+            for set in sets{
+                set.exercise?.id = id
+            }
             exercise?.id = id
         }
         else{
+            for set in sets{
+                set.exercise?.id = TableViewController.count
+            }
             exercise?.id = TableViewController.count
         }
+        Set.saveSet()
         Exercise.saveExercise()
     }
     
@@ -111,4 +110,5 @@ class ExerciseViewController: UIViewController,UITableViewDataSource, UITableVie
             exerciseTableView.reloadData()
         }
     }
+    
 }

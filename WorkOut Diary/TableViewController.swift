@@ -12,15 +12,13 @@ class TableViewController : UITableViewController {
     static var selectedRow : Int16? = nil
     static var count:Int16 = -1
     @IBOutlet weak var workoutNameTextField: UITextField!
-    var workout: WorkOut?
+    var workout: WorkOut? 
     @IBOutlet var workoutTableView: UITableView!
     override func viewDidLoad() {
-        
-        if let result = PreviousViewController.selectedRow{
-            exercises = Exercise.retrieveExercise().filter({$0.workout?.id == result})
-        }
-       
-               workoutTableView.reloadData()
+        let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        swipeBack.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeBack)
+       workoutTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,14 +31,14 @@ class TableViewController : UITableViewController {
         }
         super.viewDidLoad()
        if let result = PreviousViewController.selectedRow{
-            exercises = Exercise.retrieveExercise().filter({$0.workout?.id == result})
+            exercises = Exercise.retrieveExercise().filter({$0.workout?.id == result })
         }
        else{
-        exercises = Exercise.retrieveExercise().filter({$0.workout?.id == PreviousViewController.count})
+        exercises = Exercise.retrieveExercise().filter({$0.workout?.id == Int16(WorkOut.retrieveWorkOuts().count-1 )})
         }
         
         TableViewController.count = Int16(exercises.count-1)
-
+        tableView.reloadData()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
@@ -60,14 +58,17 @@ class TableViewController : UITableViewController {
             else if identifier == "toSaveExercise"{
                 if PreviousViewController.selectedRow == nil{
                     let workouts = WorkOut.retrieveWorkOuts()
-                    let workout = workouts[Int(PreviousViewController.count)]
+                    let workout = workouts[WorkOut.retrieveWorkOuts().count-1]
                 if workout.exercises != nil{
                     workout.time = Date() as NSDate
-                    workout.id = PreviousViewController.count
-                    workout.name = workoutNameTextField.text
-                    PreviousViewController.count = PreviousViewController.count+1
+                    workout.id =  Int16(WorkOut.retrieveWorkOuts().count-1)
+                    workout.name = workoutNameTextField.text ?? "WorkOut\( Int16(WorkOut.retrieveWorkOuts().count))"
+                   
                 WorkOut.saveWorkOut()
                 }
+                else{
+                    WorkOut.delete(workout: workout)
+                    }
                 }
                 else{
                     let workouts = WorkOut.retrieveWorkOuts()
@@ -119,12 +120,22 @@ class TableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             Exercise.delete(exercise: exercises[indexPath.row])
-            exercises = Exercise.retrieveExercise()
+            if let id = TableViewController.selectedRow{
+                exercises = Exercise.retrieveExercise().filter({$0.workout?.id == id})
+            }
+            else{
+                exercises = Exercise.retrieveExercise().filter({$0.workout?.id ==  Int16(WorkOut.retrieveWorkOuts().count-1)})
+            }
             workoutTableView.reloadData()
         }
 
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         TableViewController.selectedRow = Int16(indexPath.row)
+    }
+}
+extension UIViewController{
+    func swipeAction(swipe: UISwipeGestureRecognizer){
+        performSegue(withIdentifier: "back", sender: self)
     }
 }

@@ -32,8 +32,6 @@
 		362E7ED71F323A0800670766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362E7ED51F323A0800670766 /* Main.storyboard */; };
 		362E7ED91F3243B300670766 /* PreviousCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362E7ED81F3243B300670766 /* PreviousCell.swift */; };
 		362E7EDF1F32C0F800670766 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362E7EDE1F32C0F800670766 /* SWRevealViewController.m */; };
-		366BF44D1F2B17C800233F3D /* SetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BF44C1F2B17C800233F3D /* SetTableViewController.swift */; };
-		366BF44F1F2B180B00233F3D /* SetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BF44E1F2B180B00233F3D /* SetTableViewCell.swift */; };
 		36A620F31F33F9D400AB10D3 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A620F21F33F9D400AB10D3 /* Logo.png */; };
 		36A620F51F33FDDB00AB10D3 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A620F41F33FDDB00AB10D3 /* background.png */; };
 		36A620F71F33FE2300AB10D3 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36A620F61F33FE2300AB10D3 /* Media.xcassets */; };
@@ -42,6 +40,7 @@
 		36A620FD1F3406DE00AB10D3 /* 举重.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A620FC1F3406DE00AB10D3 /* 举重.png */; };
 		36A621031F34093700AB10D3 /* gym-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A621021F34093700AB10D3 /* gym-2.png */; };
 		36A621051F340C5B00AB10D3 /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A621041F340C5B00AB10D3 /* background2.png */; };
+		36FDC4541F34263B009C52CA /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FDC4531F34263B009C52CA /* UserCell.swift */; };
 		AE7A9318221C5825CE4BE420 /* Pods_WorkOut_Diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BB2A3A52B3B9CEE08D5D8B6 /* Pods_WorkOut_Diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,8 +75,6 @@
 		362E7EDC1F32C09300670766 /* WorkOut Diary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WorkOut Diary-Bridging-Header.h"; sourceTree = "<group>"; };
 		362E7EDD1F32C0F800670766 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		362E7EDE1F32C0F800670766 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		366BF44C1F2B17C800233F3D /* SetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTableViewController.swift; sourceTree = "<group>"; };
-		366BF44E1F2B180B00233F3D /* SetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
 		36A620F21F33F9D400AB10D3 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		36A620F41F33FDDB00AB10D3 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = "WorkOut Diary/background.png"; sourceTree = "<group>"; };
 		36A620F61F33FE2300AB10D3 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -86,6 +83,7 @@
 		36A620FC1F3406DE00AB10D3 /* 举重.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "举重.png"; sourceTree = "<group>"; };
 		36A621021F34093700AB10D3 /* gym-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gym-2.png"; sourceTree = "<group>"; };
 		36A621041F340C5B00AB10D3 /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
+		36FDC4531F34263B009C52CA /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		8E641A6E5023BD8BD1089084 /* Pods-WorkOut Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkOut Diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-WorkOut Diary/Pods-WorkOut Diary.release.xcconfig"; sourceTree = "<group>"; };
 		9F185859EAFED6404632FB35 /* Pods-WorkOut Diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkOut Diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WorkOut Diary/Pods-WorkOut Diary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,13 +148,12 @@
 				360C97A11F2ACA4C002FF4A7 /* HomeViewController.swift */,
 				360C97B61F2ACDB4002FF4A7 /* PreviousViewController.swift */,
 				360C97B81F2ACDD2002FF4A7 /* UserViewController.swift */,
+				36FDC4531F34263B009C52CA /* UserCell.swift */,
 				360C97BF1F2B0E5B002FF4A7 /* TableViewController.swift */,
 				362E7E481F2D738A00670766 /* TableViewCell.swift */,
 				360C97C11F2B0EA0002FF4A7 /* ExerciseTableViewCell.swift */,
 				362E7ED81F3243B300670766 /* PreviousCell.swift */,
 				362E7E761F2EF6B300670766 /* ExerciseViewController.swift */,
-				366BF44E1F2B180B00233F3D /* SetTableViewCell.swift */,
-				366BF44C1F2B17C800233F3D /* SetTableViewController.swift */,
 				362E7ECE1F32209F00670766 /* backTableVC.swift */,
 				362E7ED01F32223600670766 /* backTablevcCell.swift */,
 			);
@@ -341,7 +338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				362E7E491F2D738A00670766 /* TableViewCell.swift in Sources */,
-				366BF44F1F2B180B00233F3D /* SetTableViewCell.swift in Sources */,
 				362E7ED91F3243B300670766 /* PreviousCell.swift in Sources */,
 				362E7EA91F31576600670766 /* User+CoreDataProperties.swift in Sources */,
 				362E7ED11F32223600670766 /* backTablevcCell.swift in Sources */,
@@ -352,11 +348,11 @@
 				360C97A21F2ACA4C002FF4A7 /* HomeViewController.swift in Sources */,
 				360C97B91F2ACDD2002FF4A7 /* UserViewController.swift in Sources */,
 				362E7EDF1F32C0F800670766 /* SWRevealViewController.m in Sources */,
+				36FDC4541F34263B009C52CA /* UserCell.swift in Sources */,
 				360C97A01F2ACA4C002FF4A7 /* AppDelegate.swift in Sources */,
 				360C97A81F2ACA4C002FF4A7 /* WorkOut_Diary.xcdatamodeld in Sources */,
 				362E7EA61F31576600670766 /* Set+CoreDataClass.swift in Sources */,
 				362E7EAC1F31576600670766 /* Exercise+CoreDataClass.swift in Sources */,
-				366BF44D1F2B17C800233F3D /* SetTableViewController.swift in Sources */,
 				362E7E771F2EF6B300670766 /* ExerciseViewController.swift in Sources */,
 				362E7EA71F31576600670766 /* Set+CoreDataProperties.swift in Sources */,
 				362E7EAB1F31576600670766 /* WorkOut+CoreDataProperties.swift in Sources */,

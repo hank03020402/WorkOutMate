@@ -11,7 +11,6 @@ import UIKit
 class PreviousViewController : UITableViewController{
     
     @IBOutlet var previousTableView: UITableView!
-    static var count: Int16 = 0
     var workouts: [WorkOut]?
     static var selectedRow: Int16?
     override func viewDidLoad() {
@@ -24,9 +23,9 @@ class PreviousViewController : UITableViewController{
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PreviousCell", for: indexPath) as! PreviousCell
-        let workout = workouts?[indexPath.row] ?? WorkOut.newWorkOut()
-        cell.workoutNameLabel.text = workout.name ?? ""
-        cell.workoutTimeLabel.text = workout.time?.convertToString()
+        let workout = workouts?[indexPath.row]
+        cell.workoutNameLabel.text = workout?.name ?? "WorkOut"
+        cell.workoutTimeLabel.text = workout?.time?.convertToString()
         return cell
   }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
